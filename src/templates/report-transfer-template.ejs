@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style></style>
+  </head>
+  <body>
+    <div className="{`col-8" ${styles.sideRight}`}>
+      <div className="{styles.success}">
+        <img src="../../../front-end/public/success.png" alt="" />
+        <h4>Transfer Success</h4>
+      </div>
+      <div className="{styles.details}">
+        <p>Amount</p>
+        <h5>Rp <%= result.amount %></h5>
+        <hr />
+        <p>Balance Left</p>
+        <h5>Rp <%= result.balanceLeft %></h5>
+        <hr />
+        <p>Date & time</p>
+        <h5><%= result.dateTime %></h5>
+        <hr />
+        <p>Notes</p>
+        <h5><%= result.notes %></h5>
+        <hr />
+        <div className="{styles.profile}">
+          <h4>Transfer To</h4>
+          <div className="{`col-4" ${styles.profileReceiver}`}>
+            <div>
+              <h5><%= result.receiverName %></h5>
+              <h6><%= result.receiverPhone %></h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
