@@ -19,23 +19,23 @@ module.exports = {
         // eslint-disable-next-line eqeqeq
         transaction_type: transactionType == 0 ? 'Top Up' : 'Transfer'
       }
-      console.log('set fata', setData);
+      // console.log('set fata', setData);
       const result = await transactionModel.createData(setData)
       return helper.response(res, 200, 'Success Transaction', result)
     } catch (error) {
-      // return helper.response(res, 400, 'Bad Request', error)
-      console.log(error)
+      return helper.response(res, 400, 'Bad Request', error)
+      // console.log(error)
     }
   },
   getTransactionHistory: async (req, res) => {
     try {
       const { id } = req.params
       const resultSender = await transactionModel.getTransactionBySenderId(id)
-      const resultReceiver = await transactionModel.getTransactionByReceiverId(
-        id
-      )
-      const result = [...resultSender, ...resultReceiver]
-      console.log(result)
+      // const resultReceiver = await transactionModel.getTransactionByReceiverId(
+      //   id
+      // )
+      const result = [...resultSender]
+      // console.log(result)
       result
         .sort((a, b) => {
           return a.transaction_id - b.transaction_id
@@ -122,9 +122,6 @@ module.exports = {
   },
   exportPdfTransaction: async (req, res) => {
     try {
-      console.log(req.body)
-      console.log(req.params)
-      const { id } = req.params
       const {
         amount,
         balanceLeft,
@@ -148,8 +145,8 @@ module.exports = {
         { result: result },
         (err, data) => {
           if (err) {
-            // return helper.response(res, 400, 'Failed Export Transaction', err)
-            console.log(err);
+            return helper.response(res, 400, 'Failed Export Transaction', err)
+            // console.log(err);
           } else {
             const options = {
               height: '11.25in',
